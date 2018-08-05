@@ -9,7 +9,7 @@ describe('User', function() {
     describe('login', function() {
         it('via options', function(done) {
             
-            var u = new user.User({"email": "test@leeching.net", "password": "123456789a"});
+            const u = new user.User({"email": "test@leeching.net", "password": "123456789a"});
             u.login().then(function (user) {
                 done();
             }, function (error) {
@@ -20,7 +20,7 @@ describe('User', function() {
 
     describe('logout', function() {
         it('via options', function(done) {
-            var u = new user.User({"email": "test@leeching.net", "password": "123456789a"});
+            const u = new user.User({"email": "test@leeching.net", "password": "123456789a"});
             u.login().then(function (user) {
                 u.logout().then(function (user) {
                     done();

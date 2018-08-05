@@ -8,7 +8,7 @@ describe('Search', function() {
     describe('GetUrl', function() {
 
         it('with query', function(done) {
-            var s = new search.Search({
+            const s = new search.Search({
                 query: "rénover OR réhabiliter OR investisseur"
             });
             s.getUrl().should.equal("https://www.leboncoin.fr/recherche/?page=1&text=r%C3%A9nover+OR+r%C3%A9habiliter+OR+investisseur&owner_type=a");
@@ -16,13 +16,13 @@ describe('Search', function() {
         });
 
         it('check url wihout parameters', function(done) {
-            var s = new search.Search();
+            const s = new search.Search();
             s.getUrl().should.equal("https://www.leboncoin.fr/recherche/?page=1&owner_type=a");
             done();
         });
 
         it('check url with specified page', function(done) {
-            var s = new search.Search()
+            const s = new search.Search()
                         .setRegion("ile_de_france")
                         .setPage(1);
             s.getUrl().should.equal("https://www.leboncoin.fr/recherche/?page=1&owner_type=a&region=12");
@@ -58,7 +58,7 @@ describe('Search', function() {
         it('check search extra', function(done) {
 
             // without search extra
-            var s = new search.Search();
+            const s = new search.Search();
             s.getUrl().should.equal("https://www.leboncoin.fr/recherche/?page=1&owner_type=a");
 
             s = new search.Search({
@@ -81,7 +81,7 @@ describe('Search', function() {
         it('Parse NbResult', function(done) {
             const html = '<header class="tabsHeader clearfix"><nav class="fl"><a href="//www.leboncoin.fr/annonces/offres/ile_de_france//?ur=1" title="Afficher toutes les annonces" class="tabsSwitch trackable active" data-info=\'{"event_name" : "ad_search::onglet::toutes_les_annonces", "event_type" : "click", "event_s2" : "8", "click_type" : "N"}\'>Toutes<span class="tabsSwitchNumbers small-hidden tiny-hidden"> 21 661</span></a><a href="//www.leboncoin.fr/annonces/offres/ile_de_france//?ur=1&amp;f=p" title="Afficher uniquement les annonces de Particuliers" class="tabsSwitch trackable" data-info=\'{"event_name" : "ad_search::onglet::particuliers", "event_type" : "click", "event_s2" : "8", "click_type" : "N"}\'>Part<span class="custom-medium-hidden">iculiers</span><span class="tabsSwitchNumbers small-hidden tiny-hidden"> 14 451</span></a><a href="//www.leboncoin.fr/annonces/offres/ile_de_france//?ur=1&amp;f=c" title="Afficher uniquement les annonces de Professionnels" class="tabsSwitch trackable" data-info=\'{"event_name" : "ad_search::onglet::professionnels", "event_type" : "click", "event_s2" : "8", "click_type" : "N"}\'>Pro<span class="custom-medium-hidden">fessionnels</span><span class="tabsSwitchNumbers small-hidden tiny-hidden"> 7 210</span></a></nav><article class="list_properties"> <a title="Trier les annonces par prix" href="//www.leboncoin.fr/annonces/offres/ile_de_france//?ur=1&amp;sp=1" class="trackable" data-info=\'{"event_name" : "ad_search::trier_par_prix", "event_type" : "click", "event_s2" : "8", "click_type" : "N"}\'><i class="icon-currency-eur"></i>Tri<span class="custom-medium-hidden">er par prix</span></a> </article></header>';
             const $ = cheerio.load(html);
-            var nbResult = search.parseNbResult($);
+            const nbResult = search.parseNbResult($);
             nbResult.should.be.exactly(21661);
             done();
         });
@@ -89,7 +89,7 @@ describe('Search', function() {
         it('Parse Entries', function(done) {
             const html = '<section class="list mainList tabs"><!-- Listing filters --><!-- Listing list --><ul class="tabsContent dontSwitch block-white"> <li> <a href="//www.leboncoin.fr/campings/921756076.htm?ca=12_s" title="Location Mobil home, gite, chalet, week&#45;end," class="list_item clearfix trackable" data-info=\'{"event_type" : "selfpromotion", "campaign" : "ad_search", "ad_listid" : "921756076", "ad_location" : "list_content", "ad_position" : "1", "ad_type" : "offres", "ad_offres" : "pro", "ad_options" : "|gallery|ldv|urgent|"}\'> <!-- Listing item image --> <div class="item_image"> <span class="item_imagePic"> <span class="lazyload" style="display:block; width:100%; height:100%;" data-imgSrc="//img1.leboncoin.fr/thumbs/8f1/8f19d808a3d69b3cc49a006a3e74de9cdf6d6e3e.jpg" data-imgAlt="Location Mobil home, gite, chalet, week&#45;end,"></span> </span> <span class="item_imageNumber"> <i class="icon-camera icon-2x nomargin"></i> <span>10</span> </span> </div> <!-- Listing item info --> <section class="item_infos"> <h2 class="item_title"> Location Mobil home, gite, chalet, week&#45;end, </h2> <p class="item_supp"> <span class="ispro">(pro)</span> Campings </p> <p class="item_supp"> Renty / Pas-de-Calais </p> <h3 class="item_price">95&nbsp;&euro; - 155&nbsp;&euro;</h3> <aside class="item_absolute"> <p class="item_supp"> <span class="item_supp emergency"><i class="icon-star"></i>Urgent</span> 28 fév, 23:29 </p> </aside> </section> </a> </li></ul></selection>';
             const $ = cheerio.load(html);
-            var results = search.parseEntries($);
+            const results = search.parseEntries($);
 
             results.should.have.length(1);
 

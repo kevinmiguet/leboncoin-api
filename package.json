@@ -1,7 +1,7 @@
 {
-  "name": "leboncoin-api",
+  "name": "pap-api",
   "version": "0.0.20",
-  "description": "leboncoin.fr API",
+  "description": "pap.fr API",
   "main": "./main.js",
   "directories": {
     "example": "examples",
@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tdurieux/leboncoin-api"
+    "url": "https://github.com/kevinmiguet/pap-api"
   },
   "bugs": {
-    "url": "https://github.com/tdurieux/leboncoin-api/issues"
+    "url": "https://github.com/kevinmiguet/pap-api/issues"
   },
   "dependencies": {
     "cheerio": "^0.20.0",
@@ -31,11 +31,11 @@
     "should": "8.0.2"
   },
   "keywords": [
-    "le bon coin",
-    "leboncoin",
-    "leboncoin.fr"
+    "particulier a particulier",
+    "pap",
+    "pap.fr"
   ],
-  "author": "Thomas Durieux",
+  "author": "Kevin Miguet",
   "license": "MIT",
   "readmeFilename": "README.md"
 }
